@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:id="@+id/ivPhoto"/>
+
+        <LinearLayout
+            android:layout_toRightOf="@id/ivPhoto"
+            android:layout_toLeftOf="@id/ivDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textStyle="bold|italic"
+                android:id="@+id/tvNome"
+                tools:text="Nome"
+                android:paddingTop="10dp"/>
+
+            <TextView
+                android:textColor="#AAA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Cidade"
+                android:id="@+id/tvCidade"/>
+
+            <TextView
+                android:textColor="#AAA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Obs"
+                android:id="@+id/tvObs"/>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/delete"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:id="@+id/ivDelete"
+            android:padding="8dp"/>
+    </RelativeLayout>
+
+
+
+</android.support.v7.widget.CardView>
