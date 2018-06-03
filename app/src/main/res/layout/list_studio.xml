@@ -3,17 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="@drawable/login_background">
 
         <ImageView
-            android:layout_width="5dp"
-            android:layout_height="5dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:id="@+id/ivPhoto"/>
 
         <LinearLayout
@@ -30,7 +32,8 @@
                 android:textStyle="bold|italic"
                 android:id="@+id/tvNome"
                 tools:text="Nome"
-                android:paddingTop="10dp"/>
+                android:paddingTop="10dp"
+                android:textColor="@color/colorAccent"/>
 
             <TextView
                 android:textColor="#AAA"
@@ -53,8 +56,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@mipmap/delete"
-            android:layout_width="5dp"
-            android:layout_height="5dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:id="@+id/ivDelete"
             android:padding="8dp"/>
     </RelativeLayout>

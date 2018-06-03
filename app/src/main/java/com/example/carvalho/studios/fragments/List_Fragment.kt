@@ -1,6 +1,7 @@
 package com.example.carvalho.studios.fragments
 
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -20,21 +21,32 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.util.Log
+import com.example.carvalho.studios.database.UserDatabase
+import com.example.carvalho.studios.model.UserPers
 import kotlinx.android.synthetic.main.fragment_list_.*
 
 class List_Fragment : Fragment() {
 
 
     lateinit var list: List<Studio>
+    var idUser: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val dao = UserDatabase.getDatabase(context.applicationContext)
+
+        val user: UserPers? = GetAsyncTask(dao!!).execute().get()
+
+        if(user != null){
+            idUser = user.id
+        }
 
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return super.onCreateView(inflater, container, savedInstanceState)
 
-        val view: View = inflater!!.inflate(R.layout.list_studio, container, false)
+        val view: View = inflater!!.inflate(R.layout.fragment_list_, container, false)
 
         getStudios()
 
@@ -51,7 +63,7 @@ class List_Fragment : Fragment() {
 
             val intentDetalhe = Intent(context, StudioActivity::class.java)
 
-            intentDetalhe.putExtra("pet", it)
+            intentDetalhe.putExtra("studio", it)
 
             startActivity(intentDetalhe)
 
@@ -73,8 +85,8 @@ class List_Fragment : Fragment() {
             StudioService.service.getStudios().enqueue(object : Callback<List<Studio>> {
 
                 override fun onResponse(call: Call<List<Studio>>, response: Response<List<Studio>>) {
-                    val petResponse = response.body()
-                    if(petResponse != null) {
+                    val studioResponse = response.body()
+                    if(studioResponse != null) {
                         list = response.body()?.toList()!!
                         loadList()
                     }
@@ -85,6 +97,15 @@ class List_Fragment : Fragment() {
                 }
             })
 
+        }
+    }
+
+    private inner class GetAsyncTask internal constructor(appDatabase: UserDatabase) : AsyncTask<Void, Void, UserPers>() {
+        private val db: UserDatabase = appDatabase
+
+        override fun doInBackground(vararg params: Void): UserPers {
+            val user :UserPers = db.userDao().getUser()
+            return user
         }
     }
 

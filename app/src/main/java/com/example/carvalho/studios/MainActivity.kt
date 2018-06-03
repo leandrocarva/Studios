@@ -2,8 +2,10 @@ package com.example.carvalho.studios
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.example.carvalho.studios.R.id.navigation_home
 import com.example.carvalho.studios.fragments.About_Fragment
 import com.example.carvalho.studios.fragments.Add_Fragment
 import com.example.carvalho.studios.fragments.List_Fragment
@@ -11,12 +13,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val mOnNavigationItemSelectedListener =  BottomNavigationView.OnNavigationItemSelectedListener { item ->
-
-
+    private val mOnNavigationItemSelectedListener =  OnNavigationItemSelectedListener { item ->
 
         when (item.itemId) {
-            R.id.navigation_home -> {
+            navigation_home -> {
                 changeFragment(List_Fragment())
                 return@OnNavigationItemSelectedListener true
             }

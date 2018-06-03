@@ -8,6 +8,7 @@ import org.junit.runner.RunWith
 
 import org.junit.Assert.*
 
+
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -19,6 +20,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.example.carvalho.studios", appContext.packageName)
+        assertEquals("br.com.lravanelli.findpets", appContext.packageName)
     }
 }
