@@ -19,35 +19,36 @@
             android:id="@+id/ivPhoto"/>
 
         <LinearLayout
-            android:layout_toRightOf="@id/ivPhoto"
-            android:layout_toLeftOf="@id/ivDel"
-            android:layout_width="match_parent"
+            android:layout_width="228dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
+            android:layout_toLeftOf="@id/ivDel"
+            android:layout_toRightOf="@id/ivPhoto"
+            android:orientation="vertical"
+            android:paddingLeft="4dp">
+
             <TextView
+                android:id="@+id/tvListNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:textColor="@color/colorAccent"
                 android:textSize="22sp"
                 android:textStyle="bold|italic"
-                android:id="@+id/tvListNome"
-                tools:text="Nome"
-                android:paddingTop="10dp"
-                android:textColor="@color/colorAccent"/>
+                tools:text="Nome" />
 
             <TextView
-                android:textColor="#AAA"
+                android:id="@+id/tvCidade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Cidade"
-                android:id="@+id/tvCidade"/>
+                android:textColor="#AAA"
+                tools:text="Cidade" />
 
             <TextView
+                android:id="@+id/tvObs"
+                android:layout_width="220dp"
+                android:layout_height="15dp"
                 android:textColor="#AAA"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Obs"
-                android:id="@+id/tvObs"/>
+                tools:text="Obs" />
 
 
         </LinearLayout>

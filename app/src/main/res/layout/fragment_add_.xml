@@ -82,11 +82,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_background"
-
-            android:hint="@string/add_hint_address"
             android:textAlignment="center"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorHint" />
+            android:textColor="@color/colorAccent" />
 
         <LinearLayout xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
@@ -196,18 +193,14 @@
 
 
         </LinearLayout>
-        <Button
-            android:id="@+id/btAdd_Picture"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:text="@string/btn_Picture"
-            android:textColor="@color/colorAccent"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="150dp"
-            android:layout_marginRight="150dp"
-            android:textAllCaps="false"
-            />
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:text="@string/add_picture"
+            android:textColor="@color/colorEdit"
+            android:layout_marginTop="10dp"/>
 
         <ImageView
             android:id="@+id/ivAddStudio"

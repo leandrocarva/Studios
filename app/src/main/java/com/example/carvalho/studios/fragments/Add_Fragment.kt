@@ -171,7 +171,7 @@ class Add_Fragment : Fragment() {
                 imagemBase64 = Base64.encodeToString(bytes, Base64.NO_WRAP)
             }
 
-            val studio: Studio = Studio(0, idUser, etAddStudioName.text.toString(), etAddAddress.text.toString(), Integer.parseInt(etAddNumber.text.toString()), etAddComplement.text.toString(), etAddDistrict.text.toString(), etAddCity.text.toString(), etAddZipCode.text.toString(), etAddObs.text.toString(),  imagemBase64)
+            val studio: Studio = Studio(studio!!.seq_studio, studio!!.seq_user, etAddStudioName.text.toString(), etAddAddress.text.toString(), Integer.parseInt(etAddNumber.text.toString()), etAddComplement.text.toString(), etAddDistrict.text.toString(), etAddCity.text.toString(), etAddZipCode.text.toString(), etAddObs.text.toString(),  imagemBase64)
 
 
             StudioService.service.upStudios(studio).enqueue(object : Callback<Studio> {
@@ -179,7 +179,7 @@ class Add_Fragment : Fragment() {
                 override fun onResponse(call: Call<Studio>, response: Response<Studio>) {
                     val userResponse = response.body()?.copy()
 
-                    if (userResponse?.seq_studio != 0) {
+                    if (userResponse?.seq_studio != -1) {
 
                         Toast.makeText(context, getString(R.string.add_update_ok), Toast.LENGTH_LONG).show()
 
