@@ -15,13 +15,14 @@ import kotlinx.android.synthetic.main.list_studio.view.*
 class StudioAdapter(val context: Context,
                     val studios: List<Studio>,
                     val listener: (Studio) -> Unit,
-                    val listenerDelete: (Studio) -> Unit) : RecyclerView.Adapter<StudioAdapter.StudioViewHolder>() {
+                    val listenerDelete: (Studio) -> Unit,
+                    val listenerEdit: (Studio) -> Unit): RecyclerView.Adapter<StudioAdapter.StudioViewHolder>() {
 
     override fun onBindViewHolder(holder: StudioViewHolder, position: Int) {
         val studio = studios[position]
 
         holder?.let {
-            holder.bindView(studio, listener, listenerDelete)
+            holder.bindView(studio, listener, listenerDelete, listenerEdit)
         }
     }
 
@@ -40,18 +41,22 @@ class StudioAdapter(val context: Context,
 
     class  StudioViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        fun bindView(studio: Studio, listener: (Studio) -> Unit, listenerDelete: (Studio) -> Unit) = with(itemView) {
+        fun bindView(studio: Studio, listener: (Studio) -> Unit, listenerDelete: (Studio) -> Unit, listenerEdit: (Studio) -> Unit) = with(itemView) {
 
-            tvNome.text = studio.nome
+            tvListNome.text = studio.nome
             tvCidade.text = studio.cidade
             tvObs.text = studio.obs
             Picasso.with(context)
-                    .load(studio.path_photo)
+                    .load(studio.path_foto)
                     .resize(100,100)
                     .into(ivPhoto)
 
-            ivDelete.setOnClickListener{
+            ivDel.setOnClickListener{
                 listenerDelete(studio)
+            }
+
+            ivEdit.setOnClickListener {
+                listenerEdit(studio)
             }
 
             setOnClickListener { listener(studio) }

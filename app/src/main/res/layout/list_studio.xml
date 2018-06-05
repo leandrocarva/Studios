@@ -20,7 +20,7 @@
 
         <LinearLayout
             android:layout_toRightOf="@id/ivPhoto"
-            android:layout_toLeftOf="@id/ivDelete"
+            android:layout_toLeftOf="@id/ivDel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="4dp"
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
                 android:textStyle="bold|italic"
-                android:id="@+id/tvNome"
+                android:id="@+id/tvListNome"
                 tools:text="Nome"
                 android:paddingTop="10dp"
                 android:textColor="@color/colorAccent"/>
@@ -52,14 +52,31 @@
 
         </LinearLayout>
 
-        <ImageView
+        <LinearLayout
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/delete"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/ivDelete"
-            android:padding="8dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_del_white"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/ivDel"
+                android:padding="8dp"/>
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_edit_white"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/ivEdit"
+                android:padding="8dp"/>
+        </LinearLayout>
     </RelativeLayout>
 
 

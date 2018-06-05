@@ -15,7 +15,7 @@ data class Studio (val seq_studio: Int,
                 val cidade: String,
                 val cep: String,
                 val obs: String,
-                val path_photo: String) : Parcelable {
+                val path_foto: String) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
             parcel.readInt(),
@@ -41,7 +41,7 @@ data class Studio (val seq_studio: Int,
         parcel.writeString(cidade)
         parcel.writeString(cep)
         parcel.writeString(obs)
-        parcel.writeString(path_photo)
+        parcel.writeString(path_foto)
     }
 
     override fun describeContents(): Int {

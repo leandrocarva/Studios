@@ -9,4 +9,13 @@ interface StudioRest {
 
     @GET("studios/")
     fun getStudios() : Call<List<Studio>>
+
+    @POST("studios/")
+    fun postStudios(@Body studio: Studio) : Call<Studio>
+
+    @PUT("studios/")
+    fun upStudios(@Body studio: Studio) : Call<Studio>
+
+    @DELETE("studios/{id}")
+    fun delStudios(@Path("id") id: Int): Call<Studio>
 }

@@ -16,43 +16,57 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Nome"
-            android:id="@+id/tvDetailNome"/>
+            android:id="@+id/tvDetailNome"
+            android:textColor="@color/colorEdit"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Endereco"
-            android:id="@+id/tvDetailEdenreco"/>
+            android:id="@+id/tvDetailEdenreco"
+            android:textColor="@color/colorEdit"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Numero"
-            android:id="@+id/tvDetailNumero"/>
+            android:id="@+id/tvDetailNumero"
+            android:textColor="@color/colorEdit"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Complemento"
+            android:id="@+id/tvDetailComplemento"
+            android:textColor="@color/colorEdit"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Bairro"
-            android:id="@+id/tvDetailBairro"/>
+            android:id="@+id/tvDetailBairro"
+            android:textColor="@color/colorEdit"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Cidade"
-            android:id="@+id/tvDetailCidade"/>
+            android:id="@+id/tvDetailCidade"
+            android:textColor="@color/colorEdit"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Cep"
-            android:id="@+id/tvDetailCep"/>
+            android:id="@+id/tvDetailCep"
+            android:textColor="@color/colorEdit"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Obs"
-            android:id="@+id/tvDetailObs"/>
+            android:id="@+id/tvDetailObs"
+            android:textColor="@color/colorEdit"/>
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

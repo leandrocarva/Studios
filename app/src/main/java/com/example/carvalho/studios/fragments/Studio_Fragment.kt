@@ -6,27 +6,28 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+
 import com.example.carvalho.studios.R
 import com.example.carvalho.studios.StudioActivity
 import com.example.carvalho.studios.adapter.StudioAdapter
 import com.example.carvalho.studios.controller.StudioService
-import com.example.carvalho.studios.model.Studio
-import com.example.carvalho.studios.util.Util
+import com.example.carvalho.studios.database.UserDatabase
 
+
+import com.example.carvalho.studios.model.Studio
+import com.example.carvalho.studios.model.UserPers
+import com.example.carvalho.studios.util.Util
+import kotlinx.android.synthetic.main.fragment_list_.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.util.Log
-import com.example.carvalho.studios.database.UserDatabase
-import com.example.carvalho.studios.model.UserPers
-import kotlinx.android.synthetic.main.fragment_list_.*
 
-class List_Fragment : Fragment() {
-
+class Studio_Fragment : Fragment() {
 
     lateinit var list: List<Studio>
     var idUser: Int = 0
@@ -43,16 +44,17 @@ class List_Fragment : Fragment() {
         }
 
     }
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
 
-        val view: View = inflater!!.inflate(R.layout.fragment_list_, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        //return inflater.inflate(R.layout.fragment_studio_, container, false)
+        val view: View = inflater!!.inflate(R.layout.fragment_studio_, container, false)
 
         getStudios()
 
         return view
     }
-
 
 
     fun loadList() {
@@ -68,7 +70,18 @@ class List_Fragment : Fragment() {
             startActivity(intentDetalhe)
 
         }, {
-            Toast.makeText(context, "Delete ${it.nome}", Toast.LENGTH_LONG).show()
+            delStudio(it)
+        },{
+            val addFragment = Add_Fragment()
+            val bundle: Bundle = Bundle()
+            bundle.putParcelable("studio", it)
+
+            addFragment.arguments = bundle
+
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.content_main, addFragment)
+            fragmentTransaction.commit()
+
         })
         recyclerView.layoutManager = LinearLayoutManager(context)
 
@@ -108,5 +121,32 @@ class List_Fragment : Fragment() {
             return user
         }
     }
+
+    fun delStudio(studioDel: Studio){
+        if (!Util.isNetworkAvailable(context)) {
+            Toast.makeText(context, R.string.connection_accepted, Toast.LENGTH_SHORT).show()
+        } else {
+            StudioService.service.delStudios(studioDel.seq_studio).enqueue(object : Callback<Studio> {
+
+                override fun onResponse(call: Call<Studio>, response: Response<Studio>) {
+
+                    Log.d("user", response.body()?.toString())
+                    val StudioResponse = response.body()?.copy()
+                    if (StudioResponse?.seq_studio == -1){
+                        Toast.makeText(context, StudioResponse.nome, Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(context, getString(R.string.list_studio_deleted), Toast.LENGTH_LONG).show()
+                        getStudios()
+
+                    }
+                }
+                override fun onFailure(call: Call<Studio>?, t: Throwable?) {
+                    Toast.makeText(context, R.string.error_logging, Toast.LENGTH_LONG).show()
+
+                }
+            })
+        }
+    }
+
 
 }
