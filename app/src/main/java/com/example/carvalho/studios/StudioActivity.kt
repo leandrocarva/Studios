@@ -20,32 +20,23 @@ class StudioActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
-
-
         studio = intent.getParcelableExtra<Studio>("studio")
 
         toolbar_layout.title = studio.nome
 
         Picasso.with(this)
                 .load(studio.path_foto)
-                .resize(100, 100)
+                .resize(100,100)
                 .into(ivBanner)
 
-        tvDetailEdenreco.text = studio.endereco
-        tvDetailNumero.text = studio.numero.toString()
-        tvDetailComplemento.text = studio.complemento
-        tvDetailBairro.text = studio.bairro
-        tvDetailCidade.text = studio.cidade
-        tvDetailCep.text = studio.cep
-        tvDetailObs.text = studio.obs
+        tvDetailAddress.text = studio.endereco
+        tvDetailNumber.text = studio.numero.toString()
+        tvDetailComplement.text = studio.complemento
+        tvDetailDistrict.text = studio.bairro
+        tvDetailCity.text = studio.cidade
+        tvDetailZipCode.text = studio.cep
+        tvDetailComment.text = studio.obs
 
-//        val mapFragment = com.example.carvalho.studios.fragments.MapFragment()
-//
-//        mapFragment.arguments = intent.extras
-//
-//        val fragmentManager = supportFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.mapaFragment, mapFragment)
-//        fragmentTransaction.commit()
+
     }
 }

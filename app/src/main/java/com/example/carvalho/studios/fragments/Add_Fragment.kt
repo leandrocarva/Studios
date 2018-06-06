@@ -31,6 +31,8 @@ import retrofit2.Response
 import java.io.File
 import java.io.FileOutputStream
 import android.util.Base64
+import com.example.carvalho.studios.MapsActivity
+import com.example.carvalho.studios.StudioActivity
 import com.example.carvalho.studios.util.ImageUtil
 import kotlinx.android.synthetic.main.fragment_add_.*
 import kotlinx.android.synthetic.main.fragment_add_.view.*
@@ -65,9 +67,13 @@ class Add_Fragment : Fragment() {
 
         val btSave: Button = view.findViewById(R.id.btAdd_Save)
 
+        val btnMap: Button = view.findViewById(R.id.btMap)
+
         imageView.setOnClickListener{loadPhoto()}
 
         btSave.setOnClickListener { saveStudio() }
+
+        btnMap.setOnClickListener { loadMap() }
 
         if(arguments != null) {
             studio = arguments!!.getParcelable<Studio>("studio")
@@ -100,6 +106,14 @@ class Add_Fragment : Fragment() {
         return view
     }
 
+    private fun loadMap() {
+        val intentDetalhe = Intent(context, MapsActivity::class.java)
+
+        intentDetalhe.putExtra("studio", studio)
+
+        startActivity(intentDetalhe)
+
+    }
     private fun loadPhoto() {
 
         val f = getSdCardFile("studio.jpg")

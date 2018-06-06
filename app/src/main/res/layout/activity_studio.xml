@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.carvalho.studios.StudioActivity"
-    android:background="@drawable/login_background">
+    tools:context=".StudioActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -27,9 +26,9 @@
             <ImageView
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="180dp"
                 android:id="@+id/ivBanner"
-                tools:src="@mipmap/ic_launcher"/>
+                tools:src="@mipmap/ic_launcher_foreground"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -50,6 +49,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        android:background="@drawable/login_background"/>
 
 </android.support.design.widget.CoordinatorLayout>

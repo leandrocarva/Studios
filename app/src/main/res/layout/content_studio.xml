@@ -2,71 +2,126 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.carvalho.studios.StudioActivity"
+    tools:context=".StudioActivity"
     tools:showIn="@layout/activity_studio">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/text_margin"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Nome"
-            android:id="@+id/tvDetailNome"
-            android:textColor="@color/colorEdit"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.CardView
+            card_view:cardCornerRadius="2dp"
+            card_view:cardElevation="6dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Endereco"
-            android:id="@+id/tvDetailEdenreco"
-            android:textColor="@color/colorEdit"/>
+            android:layout_margin="6dp"
+            android:layout_marginBottom="10dp"
+            app:cardElevation="3dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="false"
+            card_view:cardBackgroundColor="@color/background">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Numero"
-            android:id="@+id/tvDetailNumero"
-            android:textColor="@color/colorEdit"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Complemento"
-            android:id="@+id/tvDetailComplemento"
-            android:textColor="@color/colorEdit"/>
+                <TextView
+                    android:id="@+id/tvDetailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    android:background="@drawable/login_background"
+                    android:textColor="@color/colorAccent"
+                    />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Bairro"
-            android:id="@+id/tvDetailBairro"
-            android:textColor="@color/colorEdit"/>
+                <TextView
+                    android:id="@+id/tvDetailNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_background"
+                    android:textColor="@color/colorAccent"
+                     />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Cidade"
-            android:id="@+id/tvDetailCidade"
-            android:textColor="@color/colorEdit"/>
+                <TextView
+                    android:id="@+id/tvDetailComplement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_background"
+                    android:textColor="@color/colorAccent"
+                    />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Cep"
-            android:id="@+id/tvDetailCep"
-            android:textColor="@color/colorEdit"/>
+                <TextView
+                    android:id="@+id/tvDetailDistrict"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_background"
+                    android:textColor="@color/colorAccent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Obs"
-            android:id="@+id/tvDetailObs"
-            android:textColor="@color/colorEdit"/>
+                <TextView
+                    android:id="@+id/tvDetailCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_background"
+                    android:textColor="@color/colorAccent" />
+
+                <TextView
+                    android:id="@+id/tvDetailZipCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_background"
+                    android:textColor="@color/colorAccent" />
+
+                <TextView
+                    android:id="@+id/tvDetailComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/login_background"
+                    android:textColor="@color/colorAccent" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="6dp"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--app:cardElevation="3dp"-->
+            <!--app:cardPreventCornerOverlap="false"-->
+            <!--app:cardUseCompatPadding="false"-->
+            <!--card_view:cardCornerRadius="2dp"-->
+            <!--card_view:cardElevation="6dp">-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="16dp"-->
+                    <!--android:layout_marginTop="16dp"-->
+                    <!--android:text="@string/last_location"-->
+                    <!--android:textSize="16sp"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:id="@+id/tvLastLocation"/>-->
+
+                <!--<FrameLayout-->
+                    <!--android:id="@+id/mapaFragment"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="320dp"-->
+                    <!--android:layout_margin="16dp"-->
+                    <!--/>-->
+
+            <!--</LinearLayout>-->
+        <!--</android.support.v7.widget.CardView>-->
     </LinearLayout>
-
 </android.support.v4.widget.NestedScrollView>

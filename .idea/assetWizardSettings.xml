@@ -94,8 +94,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_about_white" />
-                            <entry key="sourceFile" value="C:\Vida\FIAP\Android\imagens\ic_about.svg" />
+                            <entry key="outputName" value="ic_edit_white" />
+                            <entry key="sourceFile" value="C:\Vida\FIAP\Android\imagens\ic_edit.svg" />
                           </map>
                         </option>
                       </PersistentState>
