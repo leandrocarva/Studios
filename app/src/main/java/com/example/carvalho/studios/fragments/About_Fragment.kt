@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import com.example.carvalho.studios.LoginActivity
 import com.example.carvalho.studios.MainActivity
@@ -23,7 +24,7 @@ class About_Fragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //this.btLogout.setOnClickListener { log_out() }
+
 
     }
 
@@ -31,20 +32,22 @@ class About_Fragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         return inflater.inflate(R.layout.fragment_about_, container, false)
+
+
     }
 
-    fun log_out() {
-
- //             Toast.makeText(Context, "fez o logout", Toast.LENGTH_LONG).show()
+//    fun log_out() {
+//
+//
 //        val dao = UserDatabase.getDatabase(applicationContext)
 //        DeleteAsyncTask(dao!!).execute()
 //        val intent = Intent(this@About_Fragment,  LoginActivity::class.java)
 //                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
 //                        startActivity(intent)
 //                        this@About_Fragment.finish()
-
-    }
-
+//
+//    }
+//
 //    private inner class DeleteAsyncTask internal constructor(appDatabase: UserDatabase) : AsyncTask<Void, Void, String>() {
 //        private val db: UserDatabase = appDatabase
 //

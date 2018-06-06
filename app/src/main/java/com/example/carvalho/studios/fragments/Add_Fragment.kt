@@ -107,12 +107,17 @@ class Add_Fragment : Fragment() {
     }
 
     private fun loadMap() {
-        val intentDetalhe = Intent(context, MapsActivity::class.java)
 
-        intentDetalhe.putExtra("studio", studio)
+        if (etAddZipCode.text.isEmpty()) {
+            Toast.makeText(context, R.string.write_zip_code, Toast.LENGTH_SHORT).show()
+        } else {
 
-        startActivity(intentDetalhe)
+            val intentDetalhe = Intent(context, MapsActivity::class.java)
 
+            intentDetalhe.putExtra("studio", studio)
+
+            startActivity(intentDetalhe)
+        }
     }
     private fun loadPhoto() {
 
@@ -146,71 +151,90 @@ class Add_Fragment : Fragment() {
     }
 
     private fun saveStudio() {
-
-        if(studio == null) {
-            val bytes = file!!.readBytes()
-            val imagemBase64 = Base64.encodeToString(bytes, Base64.NO_WRAP)
-
-
-            val studio: Studio = Studio(0, idUser, etAddStudioName.text.toString(), etAddAddress.text.toString(), Integer.parseInt(etAddNumber.text.toString()), etAddComplement.text.toString(), etAddDistrict.text.toString(), etAddCity.text.toString(), etAddZipCode.text.toString(), etAddObs.text.toString(),  imagemBase64)
-
-
-            StudioService.service.postStudios(studio).enqueue(object : Callback<Studio> {
-
-                override fun onResponse(call: Call<Studio>, response: Response<Studio>) {
-                    val userResponse = response.body()?.copy()
-
-                    if (userResponse?.seq_studio != -1) {
-
-                        Toast.makeText(context, getString(R.string.add_register_ok), Toast.LENGTH_LONG).show()
-
-                        val fragmentTransaction = fragmentManager.beginTransaction()
-                        fragmentTransaction.replace(R.id.content_main, Studio_Fragment())
-                        fragmentTransaction.commit()
-
-                    } else {
-                        Toast.makeText(context, getString(R.string.error_reg), Toast.LENGTH_LONG).show()
-                    }
-                }
-
-                override fun onFailure(call: Call<Studio>?, t: Throwable?) {
-                    Log.d("ERRO", t?.message)
-
-                }
-            })
+        if (etAddStudioName.text.isEmpty()) {
+            Toast.makeText(context, R.string.write_studio_name, Toast.LENGTH_SHORT).show()
+        } else if (etAddAddress.text.isEmpty()) {
+            Toast.makeText(context, R.string.write_address, Toast.LENGTH_SHORT).show()
+        } else if (etAddNumber.text.isEmpty()) {
+            Toast.makeText(context, R.string.write_number, Toast.LENGTH_SHORT).show()
+        } else if (etAddComplement.text.isEmpty()) {
+            Toast.makeText(context, R.string.write_complement, Toast.LENGTH_SHORT).show()
+        } else if (etAddDistrict.text.isEmpty()) {
+            Toast.makeText(context, R.string.write_district, Toast.LENGTH_SHORT).show()
+        } else if (etAddCity.text.isEmpty()) {
+            Toast.makeText(context, R.string.write_city, Toast.LENGTH_SHORT).show()
+        } else if (etAddObs.text.isEmpty()) {
+            Toast.makeText(context, R.string.write_comment, Toast.LENGTH_SHORT).show()
+        } else if (etAddZipCode.text.isEmpty()) {
+            Toast.makeText(context, R.string.write_zip_code, Toast.LENGTH_SHORT).show()
+        } else if (file == null) {
+            Toast.makeText(context, R.string.choose_picture, Toast.LENGTH_SHORT).show()
         } else {
-            var imagemBase64: String = ""
-            if(file != null) {
+
+            if (studio == null) {
                 val bytes = file!!.readBytes()
-                imagemBase64 = Base64.encodeToString(bytes, Base64.NO_WRAP)
-            }
-
-            val studio: Studio = Studio(studio!!.seq_studio, studio!!.seq_user, etAddStudioName.text.toString(), etAddAddress.text.toString(), Integer.parseInt(etAddNumber.text.toString()), etAddComplement.text.toString(), etAddDistrict.text.toString(), etAddCity.text.toString(), etAddZipCode.text.toString(), etAddObs.text.toString(),  imagemBase64)
+                val imagemBase64 = Base64.encodeToString(bytes, Base64.NO_WRAP)
 
 
-            StudioService.service.upStudios(studio).enqueue(object : Callback<Studio> {
+                val studio: Studio = Studio(0, idUser, etAddStudioName.text.toString(), etAddAddress.text.toString(), Integer.parseInt(etAddNumber.text.toString()), etAddComplement.text.toString(), etAddDistrict.text.toString(), etAddCity.text.toString(), etAddZipCode.text.toString(), etAddObs.text.toString(), imagemBase64, "")
 
-                override fun onResponse(call: Call<Studio>, response: Response<Studio>) {
-                    val userResponse = response.body()?.copy()
 
-                    if (userResponse?.seq_studio != -1) {
+                StudioService.service.postStudios(studio).enqueue(object : Callback<Studio> {
 
-                        Toast.makeText(context, getString(R.string.add_update_ok), Toast.LENGTH_LONG).show()
+                    override fun onResponse(call: Call<Studio>, response: Response<Studio>) {
+                        val userResponse = response.body()?.copy()
 
-                        val fragmentTransaction = fragmentManager.beginTransaction()
-                        fragmentTransaction.replace(R.id.content_main, Studio_Fragment())
-                        fragmentTransaction.commit()
+                        if (userResponse?.seq_studio != -1) {
+
+                            Toast.makeText(context, getString(R.string.add_register_ok), Toast.LENGTH_LONG).show()
+
+                            val fragmentTransaction = fragmentManager.beginTransaction()
+                            fragmentTransaction.replace(R.id.content_main, Studio_Fragment())
+                            fragmentTransaction.commit()
+
+                        } else {
+                            Toast.makeText(context, getString(R.string.error_reg), Toast.LENGTH_LONG).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<Studio>?, t: Throwable?) {
+                        Log.d("ERRO", t?.message)
 
                     }
+                })
+            } else {
+                var imagemBase64: String = ""
+                if (file != null) {
+                    val bytes = file!!.readBytes()
+                    imagemBase64 = Base64.encodeToString(bytes, Base64.NO_WRAP)
                 }
 
-                override fun onFailure(call: Call<Studio>?, t: Throwable?) {
-                    Log.d("ERRO", t?.message)
+                val studio: Studio = Studio(studio!!.seq_studio, studio!!.seq_user, etAddStudioName.text.toString(), etAddAddress.text.toString(), Integer.parseInt(etAddNumber.text.toString()), etAddComplement.text.toString(), etAddDistrict.text.toString(), etAddCity.text.toString(), etAddZipCode.text.toString(), etAddObs.text.toString(), imagemBase64, "")
 
-                }
-            })
-        }
 
+                StudioService.service.upStudios(studio).enqueue(object : Callback<Studio> {
+
+                    override fun onResponse(call: Call<Studio>, response: Response<Studio>) {
+                        val userResponse = response.body()?.copy()
+
+                        if (userResponse?.seq_studio != -1) {
+
+                            Toast.makeText(context, getString(R.string.add_update_ok), Toast.LENGTH_LONG).show()
+
+                            val fragmentTransaction = fragmentManager.beginTransaction()
+                            fragmentTransaction.replace(R.id.content_main, Studio_Fragment())
+                            fragmentTransaction.commit()
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<Studio>?, t: Throwable?) {
+                        Log.d("ERRO", t?.message)
+
+                    }
+                })
+            }
+    }
     }
 
     private fun showImage(file: File?) {

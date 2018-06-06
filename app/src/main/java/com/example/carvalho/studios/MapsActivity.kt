@@ -12,6 +12,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
@@ -52,7 +53,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         if(address.isNotEmpty()) {
             val location = address[0]
             if(address.size > 0) {
-                addMarcador(location.latitude, location.longitude, getString(R.string.last_location))
+                addMarcador(location.latitude, location.longitude, studio.nome)
             } else {
                 Log.d("map", getString(R.string.location_error))
             }
@@ -66,7 +67,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val location = LatLng(latitude, longitude)
         mMap.addMarker(MarkerOptions()
                 .position(location)
-                .title(title))
+                .title(title)
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_laucher_map)))
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,16f))
     }

@@ -16,7 +16,7 @@ class StudioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_studio)
         setSupportActionBar(toolbar)
-        fab.setOnClickListener { view ->
+        btPhone.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
@@ -29,13 +29,13 @@ class StudioActivity : AppCompatActivity() {
                 .resize(100,100)
                 .into(ivBanner)
 
-        tvDetailAddress.text = studio.endereco
-        tvDetailNumber.text = studio.numero.toString()
-        tvDetailComplement.text = studio.complemento
-        tvDetailDistrict.text = studio.bairro
-        tvDetailCity.text = studio.cidade
-        tvDetailZipCode.text = studio.cep
-        tvDetailComment.text = studio.obs
+        tvDetailAddress.text = "${getResources().getString(R.string.add_address)}: ${studio.endereco}"
+        tvDetailNumber.text = "Nº: ${studio.numero.toString()}"
+        tvDetailComplement.text = "${getResources().getString(R.string.add_complement)}: ${studio.complemento}"
+        tvDetailDistrict.text = "${getResources().getString(R.string.add_district)}: ${studio.bairro}"
+        tvDetailCity.text = "${getResources().getString(R.string.add_city)}: ${studio.cidade}"
+        tvDetailZipCode.text = "${getResources().getString(R.string.add_zip_code)}: ${studio.cep}"
+        tvDetailComment.text = "${getResources().getString(R.string.add_comments)}: ${studio.obs}"
 
 
     }

@@ -1,6 +1,9 @@
 package com.example.carvalho.studios.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +39,18 @@ class StudioAdapter(val context: Context,
         return studios.size
     }
 
+    fun share(itemView: View) {
 
+        fun bindView(studio: Studio, listener: (Studio) -> Unit, listenerDelete: (Studio) -> Unit, listenerEdit: (Studio) -> Unit) = with(itemView) {
+            val intentShare = Intent();
+            intentShare.action = Intent.ACTION_SEND
+            intentShare.putExtra(Intent.EXTRA_SUBJECT, "Studio ${studio.nome}")
+            intentShare.putExtra(Intent.EXTRA_TEXT, "Este pet está perdido, ajude-nos a encontrar o caminha de casa ${studio.path_foto}")
+            intentShare.type = "text/html"
+            val bd: Bundle? = Bundle()
+            startActivity(context,Intent.createChooser(intentShare, "Compartilhar"), bd!!);
+        }
+    }
 
 
     class  StudioViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -57,6 +71,10 @@ class StudioAdapter(val context: Context,
 
             ivEdit.setOnClickListener {
                 listenerEdit(studio)
+            }
+
+            ivShare.setOnClickListener {
+                //share(studio)
             }
 
             setOnClickListener { listener(studio) }

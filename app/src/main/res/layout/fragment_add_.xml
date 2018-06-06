@@ -113,6 +113,7 @@
                 android:id="@+id/etAddNumber"
                 android:layout_width="35dp"
                 android:layout_height="25dp"
+                android:inputType="phone"
                 android:background="@drawable/edittext_background"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent" />

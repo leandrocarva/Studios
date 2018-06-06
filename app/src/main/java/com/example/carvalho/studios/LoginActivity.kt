@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         {
             Toast.makeText(this, R.string.connection_accepted, Toast.LENGTH_SHORT).show()
         } else {
-            val user: User = User(0, etEmail.text.toString(), etPassword.text.toString())
+            val user: User = User(0, etEmail.text.toString(), etPassword.text.toString(), "")
 
 
             UserService.service.veriUser(user).enqueue(object : Callback<User> {
@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext, R.string.incorrect_password, Toast.LENGTH_LONG).show()
                     } else {
 
-                        val userP: UserPers = UserPers(userResponse!!.id , etEmail.text.toString(), cbConnected.isChecked)
+                        val userP: UserPers = UserPers(userResponse!!.id , etEmail.text.toString(), cbConnected.isChecked, "")
 
                         val dao = UserDatabase.getDatabase(applicationContext)
 
@@ -90,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
         {
             Toast.makeText(this, R.string.connection_accepted, Toast.LENGTH_SHORT).show()
         } else {
-            val user: User = User(0, etEmail.text.toString(), etPassword.text.toString())
+            val user: User = User(0, etEmail.text.toString(), etPassword.text.toString(), "")
 
 
             UserService.service.createUser(user).enqueue(object : Callback<User> {
@@ -101,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext, R.string.exist_user, Toast.LENGTH_LONG).show()
                     } else if(userResponse?.id != 0) {
 
-                        val userP: UserPers = UserPers(userResponse!!.id , etEmail.text.toString(), cbConnected.isChecked)
+                        val userP: UserPers = UserPers(userResponse!!.id , etEmail.text.toString(), cbConnected.isChecked, "")
 
                         val dao = UserDatabase.getDatabase(applicationContext)
 

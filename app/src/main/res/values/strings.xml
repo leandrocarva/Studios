@@ -51,5 +51,13 @@
     <string name="title_activity_maps">Map</string>
     <string name="add_map">Map</string>
     <string name="location_error">location error</string>
-    <string name="last_location">last location</string>
+    <string name="write_studio_name">Write Studio Name</string>
+    <string name="write_address">Write Address</string>
+    <string name="write_complement">Write Complement</string>
+    <string name="write_number">Write Number</string>
+    <string name="write_district">Write District</string>
+    <string name="write_city">Write City</string>
+    <string name="write_comment">Write Comment</string>
+    <string name="write_zip_code">Write Zip Code</string>
+    <string name="choose_picture">Choose Picture</string>
 </resources>

@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 object StudioService {
-    private val BASE_URL = "http://www.gmdlogistica.com.br:8085/studioAPI/"
+    private val BASE_URL = "http://www2.gmdlogistica.com.br:8085/studioAPI/"
     public var service: StudioRest
 
     init {
