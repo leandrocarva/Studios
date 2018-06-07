@@ -5,8 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.carvalho.studios.MainActivity">
+    android:layout_height="0dp"
+    tools:context="com.example.carvalho.studios.MainActivity"
+    app:layout_constraintBottom_toTopOf="@+id/navigation"
+    app:layout_constraintTop_toTopOf="parent">
 
 
 

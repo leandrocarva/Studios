@@ -167,7 +167,7 @@ class Add_Fragment : Fragment() {
             Toast.makeText(context, R.string.write_comment, Toast.LENGTH_SHORT).show()
         } else if (etAddZipCode.text.isEmpty()) {
             Toast.makeText(context, R.string.write_zip_code, Toast.LENGTH_SHORT).show()
-        } else if (file == null) {
+        } else if ((file == null) && (studio == null)) {
             Toast.makeText(context, R.string.choose_picture, Toast.LENGTH_SHORT).show()
         } else {
 
