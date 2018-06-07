@@ -60,9 +60,10 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
+                                      <entry key="backgroundColor" value="000000" />
                                       <entry key="iconShape" value="CIRCLE" />
-                                      <entry key="imageAsset" value="C:\Vida\FIAP\Android\imagens\clave_sol_black.png" />
-                                      <entry key="outputName" value="icon_laucher_map" />
+                                      <entry key="imageAsset" value="C:\Vida\FIAP\Android\imagens\ic_map_white.png" />
+                                      <entry key="outputName" value="ic_map_white" />
                                     </map>
                                   </option>
                                 </PersistentState>

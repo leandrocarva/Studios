@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -82,7 +83,8 @@ class Studio_Fragment : Fragment() {
             fragmentTransaction.replace(R.id.content_main, addFragment)
             fragmentTransaction.commit()
 
-        })
+        }, {
+            share(it)})
         recyclerView.layoutManager = LinearLayoutManager(context)
 
     }
@@ -120,6 +122,19 @@ class Studio_Fragment : Fragment() {
             val user :UserPers = db.userDao().getUser()
             return user
         }
+    }
+
+    fun share(studio: Studio) {
+
+        //fun bindView(studio: Studio, listener: (Studio) -> Unit, listenerDelete: (Studio) -> Unit, listenerEdit: (Studio) -> Unit) = with(itemView) {
+            val intentShare = Intent();
+            intentShare.action = Intent.ACTION_SEND
+            intentShare.putExtra(Intent.EXTRA_SUBJECT, "Studio ${studio.nome}")
+            intentShare.putExtra(Intent.EXTRA_TEXT, "Studio: ${studio.nome}, ${getResources().getString(R.string.add_phone)}: ${studio.tel}, ${getResources().getString(R.string.add_zip_code)}: ${studio.cep}")
+            intentShare.type = "text/html"
+            val bd: Bundle? = Bundle()
+            ContextCompat.startActivity(context, Intent.createChooser(intentShare, context.getString(R.string.share)), bd!!);
+        //}
     }
 
     fun delStudio(studioDel: Studio){

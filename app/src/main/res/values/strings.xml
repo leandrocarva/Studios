@@ -60,4 +60,11 @@
     <string name="write_comment">Write Comment</string>
     <string name="write_zip_code">Write Zip Code</string>
     <string name="choose_picture">Choose Picture</string>
+    <string name="write_phone">Write Phone</string>
+    <string name="add_phone">Phone</string>
+    <string name="fail">fail</string>
+    <string name="calling">Calling..</string>
+    <string name="required_permission_to_make_calls">Required permission to make calls</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="share">Compartilhar</string>
 </resources>

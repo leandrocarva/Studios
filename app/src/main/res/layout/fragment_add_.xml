@@ -51,23 +51,31 @@
 
             <EditText
                 android:id="@+id/etAddZipCode"
-                android:layout_width="150dp"
+                android:layout_width="110dp"
                 android:layout_height="25dp"
-
+                android:inputType="phone"
                 android:background="@drawable/edittext_background"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent" />
 
-            <Button
-                android:id="@+id/btMap"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_background"
-                android:text="@string/add_map"
-                android:textColor="@color/colorAccent"
+                android:layout_gravity="left"
+                android:layout_marginLeft="5dp"
+                android:text="@string/add_phone"
+                android:textColor="@color/colorEdit" />
 
-                android:textAllCaps="false"
-                />
+            <EditText
+                android:id="@+id/etAddPhone"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:inputType="phone"
+                android:background="@drawable/edittext_background"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent" />
+
+
 
         </LinearLayout>
 

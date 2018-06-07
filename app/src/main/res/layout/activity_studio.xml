@@ -43,13 +43,25 @@
     <include layout="@layout/content_studio" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btPhone"
+        android:id="@+id/btCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_phone_white"
+        android:background="@drawable/login_background"
+        android:backgroundTint="@color/cardview_dark_background"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btMaps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|right"
+        android:layout_marginRight="80dp"
+        app:srcCompat="@mipmap/ic_map_white"
         android:background="@drawable/login_background"
         android:backgroundTint="@color/cardview_dark_background"/>
 

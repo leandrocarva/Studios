@@ -19,13 +19,14 @@ class StudioAdapter(val context: Context,
                     val studios: List<Studio>,
                     val listener: (Studio) -> Unit,
                     val listenerDelete: (Studio) -> Unit,
-                    val listenerEdit: (Studio) -> Unit): RecyclerView.Adapter<StudioAdapter.StudioViewHolder>() {
+                    val listenerEdit: (Studio) -> Unit,
+                    val listenerShare: (Studio) -> Unit): RecyclerView.Adapter<StudioAdapter.StudioViewHolder>() {
 
     override fun onBindViewHolder(holder: StudioViewHolder, position: Int) {
         val studio = studios[position]
 
         holder?.let {
-            holder.bindView(studio, listener, listenerDelete, listenerEdit)
+            holder.bindView(studio, listener, listenerDelete, listenerEdit, listenerShare)
         }
     }
 
@@ -39,27 +40,16 @@ class StudioAdapter(val context: Context,
         return studios.size
     }
 
-    fun share(itemView: View) {
 
-        fun bindView(studio: Studio, listener: (Studio) -> Unit, listenerDelete: (Studio) -> Unit, listenerEdit: (Studio) -> Unit) = with(itemView) {
-            val intentShare = Intent();
-            intentShare.action = Intent.ACTION_SEND
-            intentShare.putExtra(Intent.EXTRA_SUBJECT, "Studio ${studio.nome}")
-            intentShare.putExtra(Intent.EXTRA_TEXT, "Este pet está perdido, ajude-nos a encontrar o caminha de casa ${studio.path_foto}")
-            intentShare.type = "text/html"
-            val bd: Bundle? = Bundle()
-            startActivity(context,Intent.createChooser(intentShare, "Compartilhar"), bd!!);
-        }
-    }
 
 
     class  StudioViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        fun bindView(studio: Studio, listener: (Studio) -> Unit, listenerDelete: (Studio) -> Unit, listenerEdit: (Studio) -> Unit) = with(itemView) {
+        fun bindView(studio: Studio, listener: (Studio) -> Unit, listenerDelete: (Studio) -> Unit, listenerEdit: (Studio) -> Unit, listenerShare: (Studio) -> Unit) = with(itemView) {
 
             tvListNome.text = studio.nome
             tvCidade.text = studio.cidade
-            tvObs.text = studio.obs
+            tvTel.text = "${getResources().getString(R.string.add_phone)}: ${studio.tel}"
             Picasso.with(context)
                     .load(studio.path_foto)
                     .resize(100,100)
@@ -74,7 +64,7 @@ class StudioAdapter(val context: Context,
             }
 
             ivShare.setOnClickListener {
-                //share(studio)
+                listenerShare(studio)
             }
 
             setOnClickListener { listener(studio) }

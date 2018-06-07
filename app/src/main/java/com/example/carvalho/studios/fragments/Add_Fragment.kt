@@ -67,13 +67,13 @@ class Add_Fragment : Fragment() {
 
         val btSave: Button = view.findViewById(R.id.btAdd_Save)
 
-        val btnMap: Button = view.findViewById(R.id.btMap)
+
 
         imageView.setOnClickListener{loadPhoto()}
 
         btSave.setOnClickListener { saveStudio() }
 
-        btnMap.setOnClickListener { loadMap() }
+
 
         if(arguments != null) {
             studio = arguments!!.getParcelable<Studio>("studio")
@@ -81,6 +81,7 @@ class Add_Fragment : Fragment() {
 
             view.etAddStudioName.setText(studio?.nome)
             view.etAddZipCode.setText(studio?.cep)
+            view.etAddPhone.setText(studio?.tel)
             view.etAddAddress.setText(studio?.endereco)
             view.etAddNumber.setText(studio?.numero.toString())
             view.etAddDistrict.setText(studio?.bairro)
@@ -106,19 +107,7 @@ class Add_Fragment : Fragment() {
         return view
     }
 
-    private fun loadMap() {
-
-        if (etAddZipCode.text.isEmpty()) {
-            Toast.makeText(context, R.string.write_zip_code, Toast.LENGTH_SHORT).show()
-        } else {
-
-            val intentDetalhe = Intent(context, MapsActivity::class.java)
-
-            intentDetalhe.putExtra("studio", studio)
-
-            startActivity(intentDetalhe)
-        }
-    }
+    
     private fun loadPhoto() {
 
         val f = getSdCardFile("studio.jpg")
@@ -167,6 +156,8 @@ class Add_Fragment : Fragment() {
             Toast.makeText(context, R.string.write_comment, Toast.LENGTH_SHORT).show()
         } else if (etAddZipCode.text.isEmpty()) {
             Toast.makeText(context, R.string.write_zip_code, Toast.LENGTH_SHORT).show()
+        } else if (etAddPhone.text.isEmpty()) {
+            Toast.makeText(context, R.string.write_phone, Toast.LENGTH_SHORT).show()
         } else if ((file == null) && (studio == null)) {
             Toast.makeText(context, R.string.choose_picture, Toast.LENGTH_SHORT).show()
         } else {
@@ -176,7 +167,7 @@ class Add_Fragment : Fragment() {
                 val imagemBase64 = Base64.encodeToString(bytes, Base64.NO_WRAP)
 
 
-                val studio: Studio = Studio(0, idUser, etAddStudioName.text.toString(), etAddAddress.text.toString(), Integer.parseInt(etAddNumber.text.toString()), etAddComplement.text.toString(), etAddDistrict.text.toString(), etAddCity.text.toString(), etAddZipCode.text.toString(), etAddObs.text.toString(), imagemBase64, "")
+                val studio: Studio = Studio(0, idUser, etAddStudioName.text.toString(), etAddAddress.text.toString(), Integer.parseInt(etAddNumber.text.toString()), etAddComplement.text.toString(), etAddDistrict.text.toString(), etAddCity.text.toString(), etAddZipCode.text.toString(), etAddObs.text.toString(), imagemBase64, "", etAddPhone.text.toString())
 
 
                 StudioService.service.postStudios(studio).enqueue(object : Callback<Studio> {
@@ -209,7 +200,7 @@ class Add_Fragment : Fragment() {
                     imagemBase64 = Base64.encodeToString(bytes, Base64.NO_WRAP)
                 }
 
-                val studio: Studio = Studio(studio!!.seq_studio, studio!!.seq_user, etAddStudioName.text.toString(), etAddAddress.text.toString(), Integer.parseInt(etAddNumber.text.toString()), etAddComplement.text.toString(), etAddDistrict.text.toString(), etAddCity.text.toString(), etAddZipCode.text.toString(), etAddObs.text.toString(), imagemBase64, "")
+                val studio: Studio = Studio(studio!!.seq_studio, studio!!.seq_user, etAddStudioName.text.toString(), etAddAddress.text.toString(), Integer.parseInt(etAddNumber.text.toString()), etAddComplement.text.toString(), etAddDistrict.text.toString(), etAddCity.text.toString(), etAddZipCode.text.toString(), etAddObs.text.toString(), imagemBase64, "", etAddPhone.text.toString())
 
 
                 StudioService.service.upStudios(studio).enqueue(object : Callback<Studio> {

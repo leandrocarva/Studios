@@ -73,7 +73,15 @@
                     android:textColor="@color/colorAccent" />
 
                 <TextView
-                    android:id="@+id/tvDetailZipCode"
+                android:id="@+id/tvDetailZipCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_background"
+                android:textColor="@color/colorAccent" />
+
+
+                <TextView
+                    android:id="@+id/tvDetailPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/login_background"
