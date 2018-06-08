@@ -56,7 +56,8 @@
                 android:inputType="phone"
                 android:background="@drawable/edittext_background"
                 android:textAlignment="center"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:singleLine="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -73,7 +74,8 @@
                 android:inputType="phone"
                 android:background="@drawable/edittext_background"
                 android:textAlignment="center"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:singleLine="true"/>
 
 
 
@@ -92,7 +94,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_background"
             android:textAlignment="center"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorAccent"
+            android:singleLine="true"/>
 
         <LinearLayout xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
@@ -114,7 +117,8 @@
                 android:inputType="phone"
                 android:background="@drawable/edittext_background"
                 android:textAlignment="center"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:singleLine="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -131,7 +135,8 @@
 
                 android:background="@drawable/edittext_background"
                 android:textAlignment="center"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:singleLine="true"/>
 
         </LinearLayout>
 
@@ -157,7 +162,8 @@
 
                 android:background="@drawable/edittext_background"
                 android:textAlignment="center"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:singleLine="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -172,7 +178,8 @@
                 android:layout_height="25dp"
                 android:background="@drawable/edittext_background"
                 android:textAlignment="center"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent"
+                android:singleLine="true"/>
 
 
         </LinearLayout>

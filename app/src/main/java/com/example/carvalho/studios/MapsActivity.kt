@@ -5,7 +5,9 @@ import android.location.Geocoder
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.example.carvalho.studios.model.Studio
+import com.example.carvalho.studios.util.Util
 import com.google.android.gms.common.internal.DowngradeableSafeParcel.DowngradeableSafeParcelHelper.getParcelable
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -38,29 +40,37 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         mMap.clear()
 
-        val geoCoder = Geocoder(this)
-        var address : MutableList<Address>?
-
-        studio = intent.getParcelableExtra<Studio>("studio")
+        if (Util.isNetworkAvailable(this)) {
 
 
-        address = geoCoder.getFromLocationName(
-                studio.cep,
-                1
-        )
+            val geoCoder = Geocoder(this)
+            var address: MutableList<Address>?
+
+            studio = intent.getParcelableExtra<Studio>("studio")
 
 
-        if(address.isNotEmpty()) {
-            val location = address[0]
-            if(address.size > 0) {
-                addMarcador(location.latitude, location.longitude, studio.nome)
+            address = geoCoder.getFromLocationName(
+                    studio.cep,
+                    1
+
+            )
+
+
+            if (address.isNotEmpty()) {
+                val location = address[0]
+                if (address.size > 0) {
+                    addMarcador(location.latitude, location.longitude, studio.nome)
+                } else {
+                    Log.d("map", getString(R.string.location_error))
+                    Toast.makeText(this, R.string.location_error, Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Log.d("map", getString(R.string.location_error))
+                Toast.makeText(this, R.string.location_error, Toast.LENGTH_SHORT).show()
             }
         } else {
-            Log.d("map", getString(R.string.location_error))
+            Toast.makeText(this, R.string.connection_not_accepted, Toast.LENGTH_SHORT).show()
         }
-
     }
 
     fun addMarcador(latitude: Double, longitude: Double, title : String) {

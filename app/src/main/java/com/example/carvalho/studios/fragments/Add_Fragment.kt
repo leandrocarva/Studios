@@ -107,11 +107,11 @@ class Add_Fragment : Fragment() {
         return view
     }
 
-    
+
     private fun loadPhoto() {
 
-        val f = getSdCardFile("studio.jpg")
-        file = f;
+       // val f = getSdCardFile("studio.jpg")
+       // file = f;
 
 
         val intent = Intent()
@@ -126,6 +126,8 @@ class Add_Fragment : Fragment() {
 
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == 123) {
+                val f = getSdCardFile("studio.jpg")
+                file = f;
 
                 var bitmap: Bitmap =  MediaStore.Images.Media.getBitmap(context.getContentResolver(), data!!.getData());
 
@@ -136,6 +138,8 @@ class Add_Fragment : Fragment() {
 
                 showImage(file)
             }
+
+
         }
     }
 

@@ -31,30 +31,36 @@ class About_Fragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        return inflater.inflate(R.layout.fragment_about_, container, false)
+        //return inflater.inflate(R.layout.fragment_about_, container, false)
+        val view = inflater!!.inflate(R.layout.fragment_about_, container, false)
+
+        val btOut: Button = view.findViewById(R.id.btLogout)
+
+        btOut.setOnClickListener { log_out() }
+
+        return view
+
+    }
+
+    fun log_out() {
+
+
+        val dao = UserDatabase.getDatabase(context)
+        DeleteAsyncTask(dao!!).execute()
+        val intent = Intent(context,  LoginActivity::class.java)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                        startActivity(intent)
 
 
     }
 
-//    fun log_out() {
-//
-//
-//        val dao = UserDatabase.getDatabase(applicationContext)
-//        DeleteAsyncTask(dao!!).execute()
-//        val intent = Intent(this@About_Fragment,  LoginActivity::class.java)
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-//                        startActivity(intent)
-//                        this@About_Fragment.finish()
-//
-//    }
-//
-//    private inner class DeleteAsyncTask internal constructor(appDatabase: UserDatabase) : AsyncTask<Void, Void, String>() {
-//        private val db: UserDatabase = appDatabase
-//
-//        override fun doInBackground(vararg params: Void): String {
-//            db.userDao().deleteUser()
-//            return ""
-//        }
-//    }
+    private inner class DeleteAsyncTask internal constructor(appDatabase: UserDatabase) : AsyncTask<Void, Void, String>() {
+        private val db: UserDatabase = appDatabase
+
+        override fun doInBackground(vararg params: Void): String {
+            db.userDao().deleteUser()
+            return ""
+        }
+    }
 
 }

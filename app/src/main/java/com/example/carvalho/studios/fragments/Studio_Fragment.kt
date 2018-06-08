@@ -23,7 +23,7 @@ import com.example.carvalho.studios.database.UserDatabase
 import com.example.carvalho.studios.model.Studio
 import com.example.carvalho.studios.model.UserPers
 import com.example.carvalho.studios.util.Util
-import kotlinx.android.synthetic.main.fragment_list_.*
+import kotlinx.android.synthetic.main.fragment_studio_.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -95,7 +95,7 @@ class Studio_Fragment : Fragment() {
 
         if (!Util.isNetworkAvailable(context!!))
         {
-            Toast.makeText(context, R.string.connection_accepted, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.connection_not_accepted, Toast.LENGTH_SHORT).show()
         } else {
             StudioService.service.getStudios().enqueue(object : Callback<List<Studio>> {
 
@@ -139,7 +139,7 @@ class Studio_Fragment : Fragment() {
 
     fun delStudio(studioDel: Studio){
         if (!Util.isNetworkAvailable(context)) {
-            Toast.makeText(context, R.string.connection_accepted, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.connection_not_accepted, Toast.LENGTH_SHORT).show()
         } else {
             StudioService.service.delStudios(studioDel.seq_studio).enqueue(object : Callback<Studio> {
 

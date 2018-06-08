@@ -15,6 +15,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import com.example.carvalho.studios.model.UserPers
 import kotlinx.android.synthetic.main.activity_login.*
+import com.google.firebase.iid.FirebaseInstanceId
 
 
 
@@ -36,9 +37,10 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.write_password, Toast.LENGTH_SHORT).show()
         } else if (!Util.isNetworkAvailable(this))
         {
-            Toast.makeText(this, R.string.connection_accepted, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.connection_not_accepted, Toast.LENGTH_SHORT).show()
         } else {
-            val user: User = User(0, etEmail.text.toString(), etPassword.text.toString(), "")
+            val refreshedToken = FirebaseInstanceId.getInstance().token
+            val user: User = User(0, etEmail.text.toString(), etPassword.text.toString(), refreshedToken ?: "")
 
 
             UserService.service.veriUser(user).enqueue(object : Callback<User> {
@@ -52,8 +54,8 @@ class LoginActivity : AppCompatActivity() {
                     } else if (userResponse?.id == -1){
                         Toast.makeText(applicationContext, R.string.incorrect_password, Toast.LENGTH_LONG).show()
                     } else {
-
-                        val userP: UserPers = UserPers(userResponse!!.id , etEmail.text.toString(), cbConnected.isChecked, "")
+                        val refreshedToken = FirebaseInstanceId.getInstance().token
+                        val userP: UserPers = UserPers(userResponse!!.id , etEmail.text.toString(), cbConnected.isChecked, refreshedToken ?: "")
 
                         val dao = UserDatabase.getDatabase(applicationContext)
 
@@ -88,9 +90,10 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.write_password, Toast.LENGTH_SHORT).show()
         } else if (!Util.isNetworkAvailable(this))
         {
-            Toast.makeText(this, R.string.connection_accepted, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.connection_not_accepted, Toast.LENGTH_SHORT).show()
         } else {
-            val user: User = User(0, etEmail.text.toString(), etPassword.text.toString(), "")
+            val refreshedToken = FirebaseInstanceId.getInstance().token
+            val user: User = User(0, etEmail.text.toString(), etPassword.text.toString(), refreshedToken ?: "")
 
 
             UserService.service.createUser(user).enqueue(object : Callback<User> {
@@ -101,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext, R.string.exist_user, Toast.LENGTH_LONG).show()
                     } else if(userResponse?.id != 0) {
 
-                        val userP: UserPers = UserPers(userResponse!!.id , etEmail.text.toString(), cbConnected.isChecked, "")
+                        val userP: UserPers = UserPers(userResponse!!.id , etEmail.text.toString(), cbConnected.isChecked, refreshedToken?: "")
 
                         val dao = UserDatabase.getDatabase(applicationContext)
 
